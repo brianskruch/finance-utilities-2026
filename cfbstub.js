@@ -39,18 +39,14 @@ const step02 = (list1) => {
         // Write Split amounts
         textout += `S4 Health & Fitness:Health Insurance\r\n$-${list1[i].actcare}\r\n`
         textout += `S4 Financial:Disability Insurance\r\n$-${list1[i].disable}\r\n`
-        textout += `S[Sherie CFBISD 403B +38728]\r\n$-${list1[i].ira}\r\n`
         textout += `S3 Income Tax:Medicare Tax\r\n$-${list1[i].medicare}\r\n`
         textout += `S3 Income Tax:Federal Tax\r\n$-${list1[i].fedtax}\r\n`
         textout += `S1 Retirement Exp:TRS Member Contribution\r\n$-${list1[i].trsmem}\r\n`
         textout += `S1 Retirement Exp:TRS Care Contribution\r\n$-${list1[i].trscare}\r\n`
-
+        textout += `S1 Exp Outside Budget Calc:Temp QIF Load Retire\r\n$-${list1[i].ira}\r\n`
 
         textout += `^\r\n`
-
     }
-
-
 
     step88()
 }
