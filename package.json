@@ -1,0 +1,20 @@
+{
+  "name": "finance-utilities-2026",
+  "version": "1.0.0",
+  "description": "Utilities for finance including Quicken Imports",
+  "main": "finutil.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "finance-utilities-2026"
+  },
+  "author": "Brian Skruch",
+  "license": "MIT",
+  "dependencies": {
+    "csv-parse": "^6.1.0",
+    "csv-stringify": "^6.6.0"
+  }
+}
