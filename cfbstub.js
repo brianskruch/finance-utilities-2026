@@ -6,6 +6,9 @@ const filein1 = "cfbpay_in.csv"
 const fileout = "cfbimport.qif"
 const datafolder = "data_quicken"
 let textout = `!Type:Cash\r\n`
+// Process range
+const istart = 2
+const iend = 3
 
 const step01 = () => {
     csvparse(`./${datafolder}/${filein1}`, step02)
@@ -18,7 +21,7 @@ const step02 = (list1) => {
 
     let thisdate = ""
     let deducttot = 0.0
-    for (let i = 0; i < list1.length; i++) {
+    for (let i = istart; i < iend + 1; i++) {
         thisdate = `D${list1[i].paydate.substring(4, 6)}/${list1[i].paydate.substring(6, 8)}'${list1[i].paydate.substring(2, 4)}`
         // Write CFBISD Salary Direct Deposit
         textout += `${thisdate}\r\n`
@@ -39,11 +42,11 @@ const step02 = (list1) => {
         // Write Split amounts
         textout += `S4 Health & Fitness:Health Insurance\r\n$-${list1[i].actcare}\r\n`
         textout += `S4 Financial:Disability Insurance\r\n$-${list1[i].disable}\r\n`
+        textout += `S1 Exp Outside Budget Calc:Temp QIF Load Retire\r\n$-${list1[i].ira}\r\n`
         textout += `S3 Income Tax:Medicare Tax\r\n$-${list1[i].medicare}\r\n`
         textout += `S3 Income Tax:Federal Tax\r\n$-${list1[i].fedtax}\r\n`
         textout += `S1 Retirement Exp:TRS Member Contribution\r\n$-${list1[i].trsmem}\r\n`
         textout += `S1 Retirement Exp:TRS Care Contribution\r\n$-${list1[i].trscare}\r\n`
-        textout += `S1 Exp Outside Budget Calc:Temp QIF Load Retire\r\n$-${list1[i].ira}\r\n`
 
         textout += `^\r\n`
     }
