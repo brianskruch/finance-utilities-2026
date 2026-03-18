@@ -8,7 +8,7 @@ const datafolder = "data_quicken"
 let textout = `!Type:Cash\r\n`
 // Process range
 const istart = 0
-const iend = 1
+const iend = 2
 
 const step01 = () => {
     csvparse(`./${datafolder}/${filein1}`, step02)
@@ -21,11 +21,13 @@ const step02 = (list1) => {
 
     let thisdate = ""
     let deducttot = 0.0
+    let totsal = 0.0
     for (let i = istart; i < iend + 1; i++) {
         thisdate = `D${list1[i].paydate.substring(4, 6)}/${list1[i].paydate.substring(6, 8)}'${list1[i].paydate.substring(2, 4)}`
         // Write CFBISD Salary Direct Deposit
+        totsal = Number(list1[i].paysal) - Number(list1[i].posttax)
         textout += `${thisdate}\r\n`
-        textout += `U${list1[i].paysal}\r\nT${list1[i].paysal}\r\n`
+        textout += `U${totsal}\r\nT${totsal}\r\n`
         if (list1[i].rc == "R") {
             textout += `PSamsara Salary Direct Deposit\r\nL2 Employee Inc:Samsara Salary\r\n`
         } else {
