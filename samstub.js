@@ -7,8 +7,8 @@ const fileout = "samimport.qif"
 const datafolder = "data_quicken"
 let textout = `!Type:Cash\r\n`
 // Process range
-const istart = 0
-const iend = 2
+const istart = 3
+const iend = 5
 
 const step01 = () => {
     csvparse(`./${datafolder}/${filein1}`, step02)
@@ -38,6 +38,7 @@ const step02 = (list1) => {
         // Compute and write Deduction totals
         deducttot = Number(list1[i].solsec) + Number(list1[i].medicare) + Number(list1[i].fedtax)
         deducttot += Number(list1[i].ira) + Number(list1[i].dental) + Number(list1[i].hsa) + Number(list1[i].medins)
+        deducttot = Number(deducttot.toFixed(2))
         textout += `${thisdate}\r\n`
         textout += `U-${deducttot}\r\nT-${deducttot}\r\n`
         if (list1[i].rc == "R") {
@@ -60,9 +61,6 @@ const step02 = (list1) => {
 
     step88()
 }
-
-
-
 
 const step88 = () => {
 
